@@ -1,0 +1,243 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+---
+
+<MainLayout title="Geor Ecommerce - Envíos">
+	<h5>Métodos de envío disponibles</h5>
+	<hr />
+	<p>
+		<strong>URL: </strong>
+		<span>http://pasion.georfact.test/api/v1/ecommerce/shippings/availables</span>
+	</p>
+	<p><strong>Método: </strong>GET</p>
+	<p>
+		<strong>Respuesta:</strong>
+	</p>
+	<pre>
+		{ JSON.stringify({
+    "success": true,
+    "data": [
+        {
+            "code": "DOMICILIO",
+            "description": "Envío a domicilio"
+        },
+        {
+            "code": "AGENCIA",
+            "description": "Agencia de carga"
+        },
+        {
+            "code": "TIENDA",
+            "description": "Recojo en tienda"
+        }
+    ]
+}, null, 2)}
+	</pre>
+
+	<h5>Agencia de envío disponibles</h5>
+	<hr />
+	<p>
+		<strong>URL: </strong>
+		<span>http://pasion.georfact.test/api/v1/ecommerce/shippings/agencies</span>
+	</p>
+	<p><strong>Método: </strong>GET</p>
+	<p>
+		<strong>Respuesta:</strong>
+	</p>
+	<pre>
+		{ JSON.stringify({
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "name": "Olva Courier",
+            "logo": "https://georfact.test/storage/uploads/logos/wsWgmMtyy3b5fOQ1qL7cNIKNl4QbigOIyCMtLnlK.png",
+            "code": "OLVA"
+        },
+        {
+            "id": 2,
+            "name": "Shalon",
+            "logo": "https://georfact.test/storage/uploads/logos/Rf6KIsTq7xP2OH2ruar273ZO4CzMTFiv9LD9WMuN.png",
+            "code": "SHALON"
+        }
+    ]
+}, null, 2)}
+	</pre>
+
+
+	<h5>Calcular precio de envío de un producto</h5>
+	<hr />
+	<p>
+		<strong>URL: </strong>
+		<span>http://pasion.georfact.test/api/v1/ecommerce/shippings/calculate/product</span>
+	</p>
+	<p><strong>Método: </strong>GET</p>
+	<p><strong>Requiere: </strong>Autenticación | Validación de cuenta</p>
+	<p>
+		<strong>Request:</strong>
+	</p>
+	<pre>
+		{ JSON.stringify({
+			"shipping_type": "TIENDA", // Valores disponibles: DOMICILIO | AGENCIA | TIENDA
+			"product_id": "380"
+		}, null, 2)}
+	</pre>
+	<p><strong>Tabla de referencias</strong></p>
+	<table>
+		<thead>
+			<tr>
+				<th>Columna</th>
+				<th>Descripción</th>
+				<th>Tipo de dato</th>
+				<th>Validación</th>
+				<th>Requerido</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>shipping_type</td>
+				<td>Código del tipo de envío, valores disponibles: AGENCIA | DOMICILIO | TIENDA</td>
+				<td>Cadena</td>
+				<td></td>
+				<td>Si</td>
+			</tr>
+			<tr>
+				<td>product_id</td>
+				<td>Código único del producto, el producto tiene que tener estar visible para la tienda y tener un peso mayor a 0</td>
+				<td>Cadena</td>
+				<td></td>
+				<td>Si</td>
+			</tr>
+		</tbody>
+	</table>
+	<p>
+		<strong>Respuesta cuando shipping_type es igual a DOMICILIO</strong>
+	</p>
+	<pre>
+		{ JSON.stringify({
+    "price": 345,
+    "lead_time": 5
+}, null, 2) }
+	</pre>
+	<p>
+		<strong>Respuesta cuando shipping_type es igual a DOMICILIO y no se encuentra la dirección del usuario, error 500</strong>
+	</p>
+
+	<pre>
+		{ JSON.stringify({
+    "success": false,
+    "message": "La dirección de envío no se encuentra dentro del área de disponilidad"
+}, null, 2) }
+	</pre>
+
+	<p>
+		<strong>Respuesta cuando shipping_type es igual a AGENCIA, aca se retorna un array con los agentes disponibles para el envío del producto, si la dirección de envío no se encuentra se retorna un array vacío</strong>
+	</p>
+	<pre>
+		{ JSON.stringify([
+    {
+        "name": "Olva Courier",
+        "logo": "https://georfact.test/storage/uploads/logos/wsWgmMtyy3b5fOQ1qL7cNIKNl4QbigOIyCMtLnlK.png",
+        "price": 205.83,
+        "lead_time": 3
+    }
+], null, 2) }
+	</pre>
+
+	<p>
+		<strong>Respuesta cuando shipping_type es igual a TIENDA, aca se retorna un array con los establecimientos o sucursales disponibles de la tienda, si la dirección de envío no se encuentra se retorna un array vacío</strong>
+	</p>
+	<pre>
+		{ JSON.stringify([
+    {
+        "description": "Oficina Principal",
+        "address": "CAL. LOS SAUCES SN - SEC. VILLA POETA JOSÉ GÁLVEZ BARNECHEA SUB LOTE 5 PARCELA 3",
+        "lead_time": 3,
+        "logo": "https://pasion.georfact.test/storage/uploads/logos/DK35ICeIJpVwJadt5RHIMbb8OQEiij4pdrxThoCN.png",
+        "latitude": "0.2555",
+        "longitude": "1.5555",
+        "department": "Lima ",
+        "province": "Lima",
+        "district": "Huanuco"
+    },
+    {
+        "description": "Oficina Principal",
+        "address": "AV. PRIMAVERA NRO. 120 INT. 415 (CHACARILLA)",
+        "lead_time": 1,
+        "logo": null,
+        "latitude": null,
+        "longitude": null,
+        "department": "Huánuco ",
+        "province": "Lima",
+        "district": "Santiago de Surco"
+    }
+], null, 2) }
+	</pre>
+
+	<p><strong>Tabla de referencias</strong></p>
+	<table>
+		<thead>
+			<tr>
+				<th>Columna</th>
+				<th>Descripción</th>
+				<th>Tipo de dato</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>price</td>
+				<td>Precio de envio</td>
+				<td>Número</td>
+			</tr>
+			<tr>
+				<td>lead_time</td>
+				<td>Tiempo de espera en días para la entrega del producto</td>
+				<td>Número</td>
+			</tr>
+			<tr>
+				<td>name</td>
+				<td>Nombre de la agencia de carga</td>
+				<td>Cadena</td>
+			</tr>
+			<tr>
+				<td>logo</td>
+				<td>Logo de la agencia de carga o del establecimiento</td>
+				<td>Cadena</td>
+			</tr>
+			<tr>
+				<td>description</td>
+				<td>Nombre del establecimiento</td>
+				<td>Cadena</td>
+			</tr>
+			<tr>
+				<td>address</td>
+				<td>Dirección del establecimiento</td>
+				<td>Cadena</td>
+			</tr>
+			<tr>
+				<td>latitude</td>
+				<td>Latitud del establecimiento</td>
+				<td>Número</td>
+			</tr>
+			<tr>
+				<td>Longitude</td>
+				<td>Longitud del establecimiento</td>
+				<td>Número</td>
+			</tr>
+			<tr>
+				<td>department</td>
+				<td>Nombre del departamento del establecimiento</td>
+				<td>Cadena</td>
+			</tr>
+			<tr>
+				<td>province</td>
+				<td>Nombre de la provincia del establecimiento</td>
+				<td>Cadena</td>
+			</tr>
+			<tr>
+				<td>district</td>
+				<td>Nombre del distrito del establecimiento</td>
+				<td>Cadena</td>
+			</tr>
+		</tbody>
+	</table>
+</MainLayout>
