@@ -78,7 +78,8 @@ import MainLayout from '../../layouts/MainLayout.astro';
 	<pre>
 		{ JSON.stringify({
 			"shipping_type": "TIENDA", // Valores disponibles: DOMICILIO | AGENCIA | TIENDA
-			"product_id": "380"
+			"product_id": "380",
+			"ubigeo": "100101"
 		}, null, 2)}
 	</pre>
 	<p><strong>Tabla de referencias</strong></p>
@@ -107,6 +108,13 @@ import MainLayout from '../../layouts/MainLayout.astro';
 				<td></td>
 				<td>Si</td>
 			</tr>
+			<tr>
+				<td>ubigeo</td>
+				<td>Código del distrito a donde se va a enviar el producto, este parametro tiene prioridad sobre la dirección por defecto del usuario logueado</td>
+				<td>Número</td>
+				<td></td>
+				<td>No</td>
+			</tr>
 		</tbody>
 	</table>
 	<p>
@@ -114,18 +122,21 @@ import MainLayout from '../../layouts/MainLayout.astro';
 	</p>
 	<pre>
 		{ JSON.stringify({
-    "price": 345,
-    "lead_time": 5
+    "success": true,
+    "data": {
+        "price": 345,
+        "lead_time": 5
+    }
 }, null, 2) }
 	</pre>
 	<p>
-		<strong>Respuesta cuando shipping_type es igual a DOMICILIO y no se encuentra la dirección del usuario, error 500</strong>
+		<strong>Respuesta cuando shipping_type es igual a DOMICILIO y no se encuentra la dirección del usuario o el ubigeo ingresado</strong>
 	</p>
 
 	<pre>
 		{ JSON.stringify({
-    "success": false,
-    "message": "La dirección de envío no se encuentra dentro del área de disponilidad"
+    "success": true,
+    "data": null
 }, null, 2) }
 	</pre>
 
@@ -133,44 +144,50 @@ import MainLayout from '../../layouts/MainLayout.astro';
 		<strong>Respuesta cuando shipping_type es igual a AGENCIA, aca se retorna un array con los agentes disponibles para el envío del producto, si la dirección de envío no se encuentra se retorna un array vacío</strong>
 	</p>
 	<pre>
-		{ JSON.stringify([
-    {
-        "name": "Olva Courier",
-        "logo": "https://georfact.test/storage/uploads/logos/wsWgmMtyy3b5fOQ1qL7cNIKNl4QbigOIyCMtLnlK.png",
-        "price": 205.83,
-        "lead_time": 3
-    }
-], null, 2) }
+		{ JSON.stringify({
+    "success": true,
+    "data": [
+        {
+            "name": "Olva Courier",
+            "logo": "https://georfact.test/storage/uploads/logos/wsWgmMtyy3b5fOQ1qL7cNIKNl4QbigOIyCMtLnlK.png",
+            "price": 205.83,
+            "lead_time": 3
+        }
+    ]
+}, null, 2) }
 	</pre>
 
 	<p>
 		<strong>Respuesta cuando shipping_type es igual a TIENDA, aca se retorna un array con los establecimientos o sucursales disponibles de la tienda, si la dirección de envío no se encuentra se retorna un array vacío</strong>
 	</p>
 	<pre>
-		{ JSON.stringify([
-    {
-        "description": "Oficina Principal",
-        "address": "CAL. LOS SAUCES SN - SEC. VILLA POETA JOSÉ GÁLVEZ BARNECHEA SUB LOTE 5 PARCELA 3",
-        "lead_time": 3,
-        "logo": "https://pasion.georfact.test/storage/uploads/logos/DK35ICeIJpVwJadt5RHIMbb8OQEiij4pdrxThoCN.png",
-        "latitude": "0.2555",
-        "longitude": "1.5555",
-        "department": "Lima ",
-        "province": "Lima",
-        "district": "Huanuco"
-    },
-    {
-        "description": "Oficina Principal",
-        "address": "AV. PRIMAVERA NRO. 120 INT. 415 (CHACARILLA)",
-        "lead_time": 1,
-        "logo": null,
-        "latitude": null,
-        "longitude": null,
-        "department": "Huánuco ",
-        "province": "Lima",
-        "district": "Santiago de Surco"
-    }
-], null, 2) }
+		{ JSON.stringify({
+    "success": true,
+    "data": [
+        {
+            "description": "Oficina Principal",
+            "address": "CAL. LOS SAUCES SN - SEC. VILLA POETA JOSÉ GÁLVEZ BARNECHEA SUB LOTE 5 PARCELA 3",
+            "lead_time": 3,
+            "logo": "https://pasion.georfact.test/storage/uploads/logos/DK35ICeIJpVwJadt5RHIMbb8OQEiij4pdrxThoCN.png",
+            "latitude": "0.2555",
+            "longitude": "1.5555",
+            "department": "Lima ",
+            "province": "Lima",
+            "district": "Huanuco"
+        },
+        {
+            "description": "Oficina Principal",
+            "address": "AV. PRIMAVERA NRO. 120 INT. 415 (CHACARILLA)",
+            "lead_time": 1,
+            "logo": null,
+            "latitude": null,
+            "longitude": null,
+            "department": "Huánuco ",
+            "province": "Lima",
+            "district": "Santiago de Surco"
+        }
+    ]
+}, null, 2) }
 	</pre>
 
 	<p><strong>Tabla de referencias</strong></p>
