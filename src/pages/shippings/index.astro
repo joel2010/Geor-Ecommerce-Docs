@@ -257,4 +257,136 @@ import MainLayout from '../../layouts/MainLayout.astro';
 			</tr>
 		</tbody>
 	</table>
+
+	<br><br>
+	<h5>Agregar método de envío al carrito</h5>
+	<hr />
+	<p>
+		<strong>URL: </strong>
+		<span>https://pasion.georfact.test/api/v1/ecommerce/carts/shipments/add</span>
+	</p>
+	<p><strong>Método: </strong>POST</p>
+	<p><strong>Requiere: </strong>Autenticación | Validación de cuenta | Carrito disponible</p>
+	<p>
+		<strong>Request:</strong>
+	</p>
+	<pre>
+		{ JSON.stringify({
+    "type": "AGENCIA",
+    "agency_code": "OLVA",
+    "establishment_id": 1,
+    "ubigeo": "150101",
+    "address": "Calle las flores s/n",
+    "extra": [
+    {
+        "value": "Lima",
+        "ubigeo": "10",
+        "national_division": "Departamento"
+    },
+    {
+        "value": "Barranca",
+        "ubigeo": "1001",
+        "national_division": "Provincia"
+    },
+    {
+        "value": "Pativilca",
+        "ubigeo": "100101",
+        "national_division": "Distrito"
+    }
+],
+    "postal_code": "101155",
+    "arrives_from": "2023-11-21 12:01:10",
+    "arrives_to": "2023-11-21 14:01:10",
+    "receives_name": "Alice Cerna Mendonza",
+    "requirements": "Agregame mi boleta al correo joel201087@gmail.com"
+}, null, 2)}
+	</pre>
+	<p><strong>Tabla de referencias</strong></p>
+	<table>
+		<thead>
+			<tr>
+				<th>Columna</th>
+				<th>Descripción</th>
+				<th>Tipo de dato</th>
+				<th>Validación</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>type</td>
+				<td>Tipo de método de envío</td>
+				<td>Cadena</td>
+				<td>Requerido | Cadena | Valores disponibles: AGENCIA - TIENDA - DOMICILIO</td>
+			</tr>
+			<tr>
+				<td>agency_code</td>
+				<td>Código de la agencia de envío</td>
+				<td>Cadena</td>
+				<td>Requerido si type es igual a AGENCIA | Máximo 15 caracteres</td>
+			</tr>
+			<tr>
+				<td>establishment_id</td>
+				<td>Código del establecimiento a donde se enviará el pedido</td>
+				<td>Número</td>
+				<td>Requerido si type es igual a TIENDA</td>
+			</tr>
+			<tr>
+				<td>ubigeo</td>
+				<td>Código del distrito</td>
+				<td>Número</td>
+				<td>Requerido | 6 digitos</td>
+			</tr>
+			<tr>
+				<td>address</td>
+				<td>Dirección a donde se va a enviar el pedido</td>
+				<td>Cadena</td>
+				<td>Requerido | Máximo 250 caracteres</td>
+			</tr>
+			<tr>
+				<td>extra</td>
+				<td>Distrubición geográfica del país, ejemplo para el caso de Perú, Departamento, Provincia y Distrito.</td>
+				<td>Json</td>
+				<td>Requerido</td>
+			</tr>
+			<tr>
+				<td>postal_code</td>
+				<td>Código postal del usuario</td>
+				<td>Cadena</td>
+				<td>Máximo 15 caracteres</td>
+			</tr>
+			<tr>
+				<td>arrives_from</td>
+				<td>Fecha inicial de probable de entrega</td>
+				<td>Fecha</td>
+				<td>Requerido | Fecha | Formato de fecha YYYY-MM-DD HH:MM:SS</td>
+			</tr>
+			<tr>
+				<td>arrives_to</td>
+				<td>Fecha final de probable de entrega</td>
+				<td>Fecha</td>
+				<td>Requerido | Fecha | Formato de fecha YYYY-MM-DD HH:MM:SS</td>
+			</tr>
+			<tr>
+				<td>receives_name</td>
+				<td>Nombre de la persona que recibirá el pedido</td>
+				<td>Cadena</td>
+				<td>Requerido | Máximo 250 caracteres</td>
+			</tr>
+			<tr>
+				<td>requirements</td>
+				<td>Información adicional para la entrega</td>
+				<td>Cadena</td>
+				<td>Máximo 500 caracteres</td>
+			</tr>
+		</tbody>
+	</table>
+	<p>
+		<strong>Respuesta:</strong>
+	</p>
+	<pre>
+		{ JSON.stringify({
+    "success": true,
+    "message": "Información procesada de forma correcta."
+}, null, 2)}
+	</pre>
 </MainLayout>
