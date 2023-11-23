@@ -1,0 +1,59 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import {PaymentMethods} from './models'
+---
+
+<MainLayout title="Geor Ecommerce - Métodos de pago">
+	<h5>Métodos de pago disponibles</h5>
+	<hr />
+	<p>
+		<strong>Descripción: </strong>En este endpoint se retorna los métodos de pago seleccionados por el vendedor
+	</p>
+	<p>
+		<strong>URL: </strong>
+		<span>https://pasion.georfact.test/api/v1/ecommerce/payment-methods/availables</span>
+	</p>
+	<p><strong>Método: </strong>GET</p>
+	<p>
+		<strong>Respuesta</strong>
+	</p>
+	<pre>
+		{
+			JSON.stringify(PaymentMethods, null, 2)
+		}
+	</pre>
+
+	<br><br>
+	<h5>Pagar carrito actual</h5>
+	<hr />
+	<p>
+		<strong>Descripción: </strong>Agrega un método de pago al carrito actual del usuario logueado
+	</p>
+	<p>
+		<strong>URL: </strong>
+		<span>https://pasion.georfact.test/api/v1/ecommerce/carts/pay</span>
+	</p>
+	<p><strong>Método: </strong>POST</p>
+	<p><strong>Requiere: </strong>Autenticación | Validación de cuenta</p>
+	<p>
+		<strong>Request</strong>
+	</p>
+	<pre>
+		{
+			JSON.stringify({
+    "payment_method": "TRANSFERENCIA"
+}, null, 2)
+		}
+	</pre>
+	<p>
+		<strong>Respuesta</strong>
+	</p>
+	<pre>
+		{
+			JSON.stringify({
+    "success": true,
+    "message": "Información procesada de forma correcta."
+}, null, 2)
+		}
+	</pre>
+</MainLayout>
