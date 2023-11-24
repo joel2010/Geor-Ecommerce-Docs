@@ -340,13 +340,13 @@ import MainLayout from '../../layouts/MainLayout.astro';
 				<td>address</td>
 				<td>Dirección a donde se va a enviar el pedido</td>
 				<td>Cadena</td>
-				<td>Requerido | Máximo 250 caracteres</td>
+				<td>Requerido cuando type es igual a DOMICILIO o AGENCIA | Máximo 250 caracteres</td>
 			</tr>
 			<tr>
 				<td>extra</td>
 				<td>Distrubición geográfica del país, ejemplo para el caso de Perú, Departamento, Provincia y Distrito.</td>
 				<td>Json</td>
-				<td>Requerido</td>
+				<td>Requerido cuando type es igual a DOMICILIO o AGENCIA</td>
 			</tr>
 			<tr>
 				<td>postal_code</td>
@@ -370,7 +370,7 @@ import MainLayout from '../../layouts/MainLayout.astro';
 				<td>receives_name</td>
 				<td>Nombre de la persona que recibirá el pedido</td>
 				<td>Cadena</td>
-				<td>Requerido | Máximo 250 caracteres</td>
+				<td>Máximo 250 caracteres</td>
 			</tr>
 			<tr>
 				<td>requirements</td>
@@ -388,5 +388,43 @@ import MainLayout from '../../layouts/MainLayout.astro';
     "success": true,
     "message": "Información procesada de forma correcta."
 }, null, 2)}
+	</pre>
+
+	<br><br>
+	<h5>Calcular precio de envío del carrito</h5>
+	<hr />
+	<p>
+		<strong>URL: </strong>
+		<span>https://pasion.georfact.test/api/v1/ecommerce/carts/shipments/calculate</span>
+	</p>
+	<p><strong>Método: </strong>GET</p>
+	<p>
+		<strong>Request:</strong>
+	</p>
+	<pre>
+		{ JSON.stringify({
+    "type": "DOMICILIO",
+    "agency_code": "OLVA",
+    "establishment_id": 1,
+    "ubigeo": "150101"
+}, null, 2)}
+	</pre>
+	<p>
+		<strong>Respuesta:</strong>
+	</p>
+	<pre>
+		{ JSON.stringify({
+    "success": true,
+    "message": "Información procesada de forma correcta.",
+    "data": {
+        "type": {
+            "price": 6642,
+            "lead_time": 1
+        },
+        "weight": 2210,
+        "subtotal": 6642,
+        "total": 7837.5599999999995
+    }
+}, null, 2) }
 	</pre>
 </MainLayout>
