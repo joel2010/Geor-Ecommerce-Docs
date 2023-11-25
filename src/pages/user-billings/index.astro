@@ -29,6 +29,9 @@ import MainLayout from '../../layouts/MainLayout.astro';
     JSON.stringify({
     "business_name":"Apex",
     "tax_identifier":"12453654",
+    "department_id":"15",
+    "province_id":"1501",
+    "district_id":"150101",
     "fiscal_address":"campoy",
     "default":true
     }, null, 2)
@@ -71,6 +74,27 @@ import MainLayout from '../../layouts/MainLayout.astro';
 				<td>Si</td>
 			</tr>
 			<tr>
+				<td>department_id</td>
+				<td>Código del departamento</td>
+				<td>String</td>
+				<td>Máximo 2 caracteres</td>
+				<td>Si</td>
+			</tr>
+			<tr>
+				<td>province_id</td>
+				<td>Código de la provincia</td>
+				<td>String</td>
+				<td>Máximo 4 caracteres</td>
+				<td>Si</td>
+			</tr>
+			<tr>
+				<td>district_id</td>
+				<td>Código del distrito</td>
+				<td>String</td>
+				<td>Máximo 6 caracteres</td>
+				<td>Si</td>
+			</tr>
+			<tr>
 				<td>default</td>
 				<td>Valor que indica si la fila es la predeterminada</td>
 				<td>Bool</td>
@@ -84,16 +108,28 @@ import MainLayout from '../../layouts/MainLayout.astro';
 	</p>
 	<pre>
 		{ JSON.stringify({
-     "data": {
-        "id": 4,
-        "business_name": "Apex",
-        "tax_identifier": "12453654",
-        "fiscal_address": "campoy",
+    "data": {
+        "id": 5,
+        "business_name": "Juan Yoel Cerna Torres",
+        "tax_identifier": "10447857168",
+        "fiscal_address": "calle las flores s/n",
+        "department": {
+            "id": "15",
+            "description": "Lima "
+        },
+        "province": {
+            "id": "1501",
+            "description": "Lima"
+        },
+        "district": {
+            "id": "150101",
+            "description": "Lima"
+        },
         "default": true
     },
     "success": true,
     "message": "Tipo de documento creado de forma correcta."
-    }, null, 2)}
+}, null, 2)}
     </pre>
 
      <h6>Listado de direcciones de facturación</h6>
@@ -117,18 +153,88 @@ import MainLayout from '../../layouts/MainLayout.astro';
 
 	<pre>
 		{ JSON.stringify({
-        "data": [
+    "data": [
+        {
+            "id": 1,
+            "business_name": "Juan Yoel Cerna Torres",
+            "tax_identifier": "10447857168",
+            "fiscal_address": "calle las flores s/n",
+            "department": null,
+            "province": null,
+            "district": null,
+            "default": 0
+        },
+        {
+            "id": 2,
+            "business_name": "Juan Yoel Cerna Torres",
+            "tax_identifier": "10447857168",
+            "fiscal_address": "calle las flores s/n",
+            "department": null,
+            "province": null,
+            "district": null,
+            "default": 0
+        },
+        {
+            "id": 3,
+            "business_name": "Juan Yoel Cerna Torres",
+            "tax_identifier": "10447857168",
+            "fiscal_address": "calle las flores s/n",
+            "department": {
+                "id": "15",
+                "description": "Lima "
+            },
+            "province": {
+                "id": "1501",
+                "description": "Lima"
+            },
+            "district": {
+                "id": "150101",
+                "description": "Lima"
+            },
+            "default": 0
+        },
         {
             "id": 4,
-            "business_name": "Apex",
-            "tax_identifier": "12453654",
-            "fiscal_address": "campoy",
+            "business_name": "Juan Yoel Cerna Torres",
+            "tax_identifier": "10447857168",
+            "fiscal_address": "calle las flores s/n",
+            "department": {
+                "id": "15",
+                "description": "Lima "
+            },
+            "province": {
+                "id": "1501",
+                "description": "Lima"
+            },
+            "district": {
+                "id": "150101",
+                "description": "Lima"
+            },
+            "default": 0
+        },
+        {
+            "id": 5,
+            "business_name": "Juan Yoel Cerna Torres",
+            "tax_identifier": "10447857168",
+            "fiscal_address": "calle las flores s/n",
+            "department": {
+                "id": "15",
+                "description": "Lima "
+            },
+            "province": {
+                "id": "1501",
+                "description": "Lima"
+            },
+            "district": {
+                "id": "150101",
+                "description": "Lima"
+            },
             "default": 1
         }
     ],
     "success": true,
     "message": "Listado de Facturación mostrados de forma correcta."
-    }, null, 2)}
+}, null, 2)}
     </pre>
 
 
@@ -151,6 +257,9 @@ import MainLayout from '../../layouts/MainLayout.astro';
     "business_name":"michael",
     "tax_identifier":"12453654",
     "fiscal_address":"campoy",
+	"department_id": "15",
+    "province_id": "1501",
+    "district_id": "150101",
     "default":false
     }   , null, 2)
     }
@@ -161,12 +270,28 @@ import MainLayout from '../../layouts/MainLayout.astro';
 	<pre>
 		{ JSON.stringify({
         "data": {
-            "id": 4,
-            "business_name": "michael",
-            "tax_identifier": "12453654",
-            "fiscal_address": "campoy",
-            "default": false
+    "data": {
+        "id": 5,
+        "business_name": "Juan Yoel Cerna Torres",
+        "tax_identifier": "10447857168",
+        "fiscal_address": "calle las flores s/n",
+        "department": {
+            "id": "15",
+            "description": "Lima "
+        },
+        "province": {
+            "id": "1501",
+            "description": "Lima"
+        },
+        "district": {
+            "id": "150101",
+            "description": "Lima"
+        },
+        "default": true
     },
+    "success": true,
+    "message": "Tipo de documento creado de forma correcta."
+},
     "success": true,
     "message": "El tipo de documento seleccionado fue actualizado de forma correcta."}, null, 2)}
     </pre>
