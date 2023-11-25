@@ -41,7 +41,32 @@ import {PaymentMethods} from './models'
 	<pre>
 		{
 			JSON.stringify({
-    "payment_method": "TRANSFERENCIA"
+    "shipping_type": "DOMICILIO",
+    "agency_code": "OLVA",
+    "establishment_id": 1,
+    "ubigeo": "150101",
+    "address": "Calle las dlores s/n",
+    "extra": [
+        {
+            "Departamento": "Lima",
+            "Ubigeo": "10"
+        },
+        {
+            "Provincia": "Lima",
+            "Ubigeo": "1010"
+        },
+        {
+            "Distrito": "Lima",
+            "Ubigeo": "101001"
+        }
+    ],
+    "postal_code": "101155",
+    "arrives_from": "2023-11-21 12:01:10",
+    "arrives_to": "2023-11-21 14:01:10",
+    "receives_name": "Alice Cerna Mendonza",
+    "requirements": "Agregame mi boleta al correo joel201087@gmail.com",
+    "payment_method": "TRANSFERENCIA",
+    "billing_id": 11
 }, null, 2)
 		}
 	</pre>
@@ -56,4 +81,84 @@ import {PaymentMethods} from './models'
 }, null, 2)
 		}
 	</pre>
+	<br><br>
+	<p><strong>Tabla de referencias</strong></p>
+	<table>
+		<thead>
+			<tr>
+				<th>Columna</th>
+				<th>Descripción</th>
+				<th>Tipo de dato</th>
+				<th>Validación</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>shipping_type</td>
+				<td>Tipo de método de envío</td>
+				<td>Cadena</td>
+				<td>Requerido | Cadena | Valores disponibles: AGENCIA - TIENDA - DOMICILIO</td>
+			</tr>
+			<tr>
+				<td>agency_code</td>
+				<td>Código de la agencia de envío</td>
+				<td>Cadena</td>
+				<td>Requerido si type es igual a AGENCIA | Máximo 15 caracteres</td>
+			</tr>
+			<tr>
+				<td>establishment_id</td>
+				<td>Código del establecimiento a donde se enviará el pedido</td>
+				<td>Número</td>
+				<td>Requerido si type es igual a TIENDA</td>
+			</tr>
+			<tr>
+				<td>ubigeo</td>
+				<td>Código del distrito</td>
+				<td>Número</td>
+				<td>Requerido | 6 digitos</td>
+			</tr>
+			<tr>
+				<td>address</td>
+				<td>Dirección a donde se va a enviar el pedido</td>
+				<td>Cadena</td>
+				<td>Requerido cuando type es igual a DOMICILIO o AGENCIA | Máximo 250 caracteres</td>
+			</tr>
+			<tr>
+				<td>extra</td>
+				<td>Distrubición geográfica del país, ejemplo para el caso de Perú, Departamento, Provincia y Distrito.</td>
+				<td>Json</td>
+				<td>Requerido cuando type es igual a DOMICILIO o AGENCIA</td>
+			</tr>
+			<tr>
+				<td>postal_code</td>
+				<td>Código postal del usuario</td>
+				<td>Cadena</td>
+				<td>Máximo 15 caracteres</td>
+			</tr>
+			<tr>
+				<td>arrives_from</td>
+				<td>Fecha inicial de probable de entrega</td>
+				<td>Fecha</td>
+				<td>Requerido | Fecha | Formato de fecha YYYY-MM-DD HH:MM:SS</td>
+			</tr>
+			<tr>
+				<td>arrives_to</td>
+				<td>Fecha final de probable de entrega</td>
+				<td>Fecha</td>
+				<td>Requerido | Fecha | Formato de fecha YYYY-MM-DD HH:MM:SS</td>
+			</tr>
+			<tr>
+				<td>receives_name</td>
+				<td>Nombre de la persona que recibirá el pedido</td>
+				<td>Cadena</td>
+				<td>Máximo 250 caracteres</td>
+			</tr>
+			<tr>
+				<td>requirements</td>
+				<td>Información adicional para la entrega</td>
+				<td>Cadena</td>
+				<td>Máximo 500 caracteres</td>
+			</tr>
+		</tbody>
+	</table>
 </MainLayout>
