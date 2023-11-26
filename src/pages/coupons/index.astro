@@ -1,0 +1,61 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+---
+
+<MainLayout title="Geor Ecommerce - Cupones">
+	<h5>Calcular descuento por cupón</h5>
+    <p>
+    Se requiere autenticación y validacion para acceder a estas API.
+    Asegúrese de proporcionar las credenciales adecuadas.
+    </p>
+	<p>
+		<strong>URL: </strong>
+		<span>https://pasion.georfact.test/api/v1/ecommerce/carts/coupons/calculate</span>
+	</p>
+	<p><strong>Método: </strong>GET</p>
+
+	<p>
+  <strong>Request: </strong>
+    </p>
+    <pre>
+    {
+    JSON.stringify({
+    "code": "envio50"
+}, null, 2)
+    }
+    </pre>
+    <p>
+    <strong>Tabla de referencias</strong>
+    </p>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Columna</th>
+				<th>Descripción</th>
+				<th>Tipo de dato</th>
+				<th>Validación</th>
+				<th>Requerido</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>code</td>
+				<td>Código del cupón</td>
+				<td>String</td>
+				<td>Máximo 25 caracteres </td>
+				<td>Si</td>
+			</tr>
+		</tbody>
+	</table>
+	<p>
+		<strong>Respuesta</strong>
+	</p>
+	<pre>
+		{ JSON.stringify({
+    "success": true,
+    "message": "Información procesada de forma correcta.",
+    "data": 10
+}, null, 2)}
+    </pre>
+</MainLayout>
