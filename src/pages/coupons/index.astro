@@ -58,4 +58,75 @@ import MainLayout from '../../layouts/MainLayout.astro';
     "data": 10
 }, null, 2)}
     </pre>
+
+	<br><br>
+	<h5>Cupones disponibles</h5>
+	<p>
+		<strong>URL: </strong>
+		<span>https://pasion.georfact.test/api/v1/ecommerce/coupons/availables</span>
+	</p>
+	<p><strong>Método: </strong>GET</p>
+	<p>
+		<strong>Respuesta</strong>
+	</p>
+	<pre>
+		{ JSON.stringify({
+    "data": [
+        {
+            "code": "ENVIO50",
+            "description": "DEMO",
+            "discount_amount": 10,
+            "discount_type": "FIJO",
+            "due_date": "2023-11-29",
+            "conditions": "DEMO"
+        }
+    ],
+    "success": true,
+    "message": "Información procesada de forma correcta"
+}, null, 2)}
+    </pre>
+	<p>
+    <strong>Tabla de referencias</strong>
+    </p>
+	<table>
+		<thead>
+			<tr>
+				<th>Columna</th>
+				<th>Descripción</th>
+				<th>Tipo de dato</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>code</td>
+				<td>Código del cupón</td>
+				<td>Cadena</td>
+			</tr>
+			<tr>
+				<td>description</td>
+				<td>Detalles del cupón</td>
+				<td>Cadena</td>
+			</tr>
+			<tr>
+				<td>discount_amount</td>
+				<td>Monto a descontar</td>
+				<td>Número</td>
+			</tr>
+			<tr>
+				<td>discount_type</td>
+				<td>Tipo de descuento del cupón, puede ser FIJO o PORCENTAGE</td>
+				<td>Cadena</td>
+			</tr>
+			<tr>
+				<td>due_date</td>
+				<td>Fecha de vencimiento del cupón</td>
+				<td>Fecha</td>
+			</tr>
+			<tr>
+				<td>conditions</td>
+				<td>Condiciones u observaciones del cupón</td>
+				<td>Cadena</td>
+			</tr>
+		</tbody>
+	</table>
 </MainLayout>

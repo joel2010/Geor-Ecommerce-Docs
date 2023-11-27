@@ -15,7 +15,8 @@ import MainLayout from '../../layouts/MainLayout.astro';
 	</p>
 	<pre>
 		{ JSON.stringify({
-    "status": "PENDIENTE DE PAGO"
+    "status": "PENDIENTE DE PAGO",
+	"page": 1
 }, null, 2) }
 	</pre>
 	<p>
@@ -67,6 +68,7 @@ import MainLayout from '../../layouts/MainLayout.astro';
 		{ JSON.stringify({
     "data": {
         "code": "38e23e10-3b56-4a39-90a4-e990356a7d11",
+        "order": "000001",
         "status": "PENDIENTE DE PAGO",
         "payment_method": "TRANSFERENCIA",
         "quantity": 35,
@@ -241,4 +243,25 @@ import MainLayout from '../../layouts/MainLayout.astro';
     "message": "Información procesada de forma correcta."
 }, null, 2) }
 	</pre>
+
+	<br><br>
+	<h5>Anular pedido</h5>
+	<hr />
+	<p>
+		<strong>URL: </strong>
+		<span>https://pasion.georfact.test/api/v1/ecommerce/orders/[code]/cancel</span>
+	</p>
+	<p><strong>Método: </strong>POST</p>
+	<p>
+    Se requiere autenticación y validacion para acceder a estas API.
+    Solo se puede anular los pedidos que se encuentren en estado <strong>PAGADO|EN PREPARACIÓN|EN CAMINO|ENTREGADO</strong>.
+    </p>
+	<p>
+		<strong>Respuesta:</strong>
+	</p>
+	<pre>
+		{ JSON.stringify({
+    "success": true,
+    "message": "Información procesada de forma correcta."
+}, null, 2)
 </MainLayout>
