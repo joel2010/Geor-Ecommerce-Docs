@@ -78,6 +78,7 @@ import MainLayout from '../../layouts/MainLayout.astro';
             "discount_amount": 10,
             "discount_type": "FIJO",
             "due_date": "2023-11-29",
+			"used": false,
             "conditions": "DEMO"
         }
     ],
@@ -121,6 +122,11 @@ import MainLayout from '../../layouts/MainLayout.astro';
 				<td>due_date</td>
 				<td>Fecha de vencimiento del cupón</td>
 				<td>Fecha</td>
+			</tr>
+			<tr>
+				<td>used</td>
+				<td>Indica si el cupón ya fue usado en compras anteriores que fueron completadas con éxito.</td>
+				<td>Boleano</td>
 			</tr>
 			<tr>
 				<td>conditions</td>
