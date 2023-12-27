@@ -1,0 +1,65 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+---
+
+<MainLayout title="Geor Ecommerce - Configuración de la tienda">
+	<h5>Configuración de la tienda</h5>
+	<hr />
+	<p>
+		<strong>Descripción: </strong>Endpoint para obtener las diferentes configuraciones de la tienda
+	</p>
+	<p>
+		<strong>URL: </strong>
+		<span>http://pasion.georfacturacion.test/api/v1/ecommerce/settings</span>
+	</p>
+	<p><strong>Método: </strong>GET</p>
+	<p><strong>Tabla de referencias</strong></p>
+	<table>
+		<thead>
+			<tr>
+				<th>Valor</th>
+				<th>Descripción</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>shipping_types</td>
+				<td>Listado de las formas de envío que la tienda posee</td>
+			</tr>
+			<tr>
+				<td>ecommerce_show_only_stock</td>
+				<td>Venta con restricción de stock</td>
+			</tr>
+			<tr>
+				<td>ecommerce_shippings_apply_igv</td>
+				<td>Si se aplica o no el IGV al costo de envío</td>
+			</tr>
+		</tbody>
+	</table>
+	<p>
+		<strong>Respuesta</strong>
+	</p>
+	<pre>
+		{ JSON.stringify({
+    "success": true,
+    "data": {
+        "shipping_types": [
+            {
+                "code": "DOMICILIO",
+                "description": "Envío a domicilio"
+            },
+            {
+                "code": "AGENCIA",
+                "description": "Agencia de carga"
+            },
+            {
+                "code": "TIENDA",
+                "description": "Recojo en tienda"
+            }
+        ],
+        "ecommerce_show_only_stock": false,
+        "ecommerce_shippings_apply_igv": true
+    }
+}, null, 2)}
+	</pre>
+</MainLayout>
