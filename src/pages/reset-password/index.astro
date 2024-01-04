@@ -6,17 +6,17 @@ import MainLayout from '../../layouts/MainLayout.astro';
 	<h5>Recuperar contraseña</h5>
 	<hr />
 	<p>
-		<strong>Descripción: </strong>Sección donde se muestran los endpoints necesarios para que el usuario recupere su contraseña
+		<strong>Descripción: </strong>Sección donde se muestran los endpoints necesarios para que el usuario recupere su contraseña. A los endpoints se les debe dar el type en la url que pueden ser "/email" o "/phone"
 	</p>
 	<br>
-	<h6>Enviar código de verificación al correo electrónico del usuario</h6>
+	<h6>Enviar código de verificación al correo electrónico o número de teléfono del usuario</h6>
 	<p>
 		<strong>URL: </strong>
-		<span>http://pasion.georfacturacion.test/api/v1/ecommerce/reset-password/send-code</span>
+		<span>http://pasion.georfacturacion.test/api/v1/ecommerce/reset-password/send-code/[type]</span>
 	</p>
 	<p><strong>Método: </strong>POST</p>
 	<p>
-		<strong>Request:</strong>
+		<strong>Request email:</strong>
 	</p>
 	<pre>
 		{ JSON.stringify({
@@ -24,23 +24,41 @@ import MainLayout from '../../layouts/MainLayout.astro';
 }, null, 2)}
 	</pre>
 	<p>
-		<strong>Respuesta</strong>
+		<strong>Respuesta email</strong>
 	</p>
 	<pre>
 		{ JSON.stringify({
     "success": true,
     "message": "Se ha enviado un código de verificación al correo electrónico ingresado, reviselo y siga las instrucciones."
 }, null, 2)}
+	</pre>
+	<p>
+		<strong>Request phone:</strong>
+	</p>
+	<pre>
+		{ JSON.stringify({
+	"phone": "922834234",
+	"country_code":"+51"
+	}, null, 2)}
+	</pre>
+	<p>
+		<strong>Respuesta phone</strong>
+	</p>
+	<pre>
+		{ JSON.stringify({
+	"success": true,
+	"message": "Se ha enviado un código de verificación al número de teléfono ingresado, reviselo y siga las instrucciones."
+	}, null, 2)}
 	</pre>
 	<br><br>
-	<h6>Reenviar código de verificación al correo electrónico del usuario</h6>
+	<h6>Reenviar código de verificación al correo electrónico o número de teléfono del usuario</h6>
 	<p>
 		<strong>URL: </strong>
-		<span>http://pasion.georfacturacion.test/api/v1/ecommerce/reset-password/resend-code</span>
+		<span>http://pasion.georfacturacion.test/api/v1/ecommerce/reset-password/resend-code/[type]</span>
 	</p>
 	<p><strong>Método: </strong>POST</p>
 	<p>
-		<strong>Request:</strong>
+		<strong>Request email:</strong>
 	</p>
 	<pre>
 		{ JSON.stringify({
@@ -48,12 +66,30 @@ import MainLayout from '../../layouts/MainLayout.astro';
 }, null, 2)}
 	</pre>
 	<p>
-		<strong>Respuesta</strong>
+		<strong>Respuesta email</strong>
 	</p>
 	<pre>
 		{ JSON.stringify({
     "success": true,
     "message": "Se ha enviado un código de verificación al correo electrónico ingresado, reviselo y siga las instrucciones."
+}, null, 2)}
+	</pre>
+	<p>
+		<strong>Request phone:</strong>
+	</p>
+	<pre>
+		{ JSON.stringify({
+    "phone": "922834234",
+	"country_code":"+51"
+}, null, 2)}
+	</pre>
+	<p>
+		<strong>Respuesta phone</strong>
+	</p>
+	<pre>
+		{ JSON.stringify({
+    "success": true,
+	"message": "Se ha enviado un código de verificación al número de teléfono ingresado, reviselo y siga las instrucciones."
 }, null, 2)}
 	</pre>
 	<br><br>
@@ -61,11 +97,11 @@ import MainLayout from '../../layouts/MainLayout.astro';
 	<h6>Validar código de verificación</h6>
 	<p>
 		<strong>URL: </strong>
-		<span>http://pasion.georfacturacion.test/api/v1/ecommerce/reset-password/validate-code</span>
+		<span>http://pasion.georfacturacion.test/api/v1/ecommerce/reset-password/validate-code/[type]</span>
 	</p>
 	<p><strong>Método: </strong>POST</p>
 	<p>
-		<strong>Request:</strong>
+		<strong>Request email:</strong>
 	</p>
 	<pre>
 		{ JSON.stringify({
@@ -74,7 +110,7 @@ import MainLayout from '../../layouts/MainLayout.astro';
 }, null, 2)}
 	</pre>
 	<p>
-		<strong>Respuesta</strong>
+		<strong>Respuesta email</strong>
 	</p>
 	<pre>
 		{ JSON.stringify({
@@ -84,15 +120,35 @@ import MainLayout from '../../layouts/MainLayout.astro';
     "message": "Operación realizada de forma correcta."
 }, null, 2)}
 	</pre>
-
+	<p>
+		<strong>Request phone:</strong>
+	</p>
+	<pre>
+		{ JSON.stringify({
+    "phone":"922834945",
+    "country_code":"+51",
+  	"code": "519189"
+}, null, 2)}
+	</pre>
+	<p>
+		<strong>Respuesta phone</strong>
+	</p>
+	<pre>
+		{ JSON.stringify({
+    "success": true,
+    "code": "519189",
+    "is_valid": true,
+    "message": "Operación realizada de forma correcta."
+}, null, 2)}
+	</pre>
 	<h6>Cambiar la contraseña</h6>
 	<p>
 		<strong>URL: </strong>
-		<span>http://pasion.georfacturacion.test/api/v1/ecommerce/reset-password/change-password</span>
+		<span>http://pasion.georfacturacion.test/api/v1/ecommerce/reset-password/change-password/[type]</span>
 	</p>
 	<p><strong>Método: </strong>POST</p>
 	<p>
-		<strong>Request:</strong>
+		<strong>Request email:</strong>
 	</p>
 	<pre>
 		{ JSON.stringify({
@@ -103,7 +159,28 @@ import MainLayout from '../../layouts/MainLayout.astro';
 }, null, 2)}
 	</pre>
 	<p>
-		<strong>Respuesta</strong>
+		<strong>Respuesta email</strong>
+	</p>
+	<pre>
+		{ JSON.stringify({
+    "success": true,
+    "message": "La contraseña ha sido restablecida de forma correcta."
+}, null, 2)}
+	</pre>
+	<p>
+		<strong>Request phone:</strong>
+	</p>
+	<pre>
+		{ JSON.stringify({
+    "phone":"922834945",
+    "country_code":"+51",
+	"code": "519189",
+	"password": "test#123",
+	"password_confirmation": "test#123"
+}, null, 2)}
+	</pre>
+	<p>
+		<strong>Respuesta phone</strong>
 	</p>
 	<pre>
 		{ JSON.stringify({
