@@ -342,4 +342,69 @@ import { cartResponse } from './models.js'
 }, null, 2)
 		}
 	</pre>
+
+    <br><br>
+	<h5>Información del Cliente</h5>
+	<hr />
+	<p>
+		<strong>Descripción: </strong>En este endpoint se muestra como traer la informacion de un cliente con su documento de identidad, ya sea DNI o RUC.
+	</p>
+	<p>
+		<strong>URL: </strong>
+		<span>https://pasion.georfacturacion.test/api/v1/ecommerce/carts/service/(type)/(number)</span>
+	</p>
+	<p><strong>Método: </strong>GET</p>
+	<p>
+		<strong>Respuesta</strong>
+	</p>
+	<pre>
+		{
+			JSON.stringify({
+    "success": true,
+    "data": {
+        "numero": "71409307",
+        "nombre_completo": "MARTEL INOCENTE, EDWUARD MANOLO",
+        "nombres": "EDWUARD MANOLO",
+        "apellido_paterno": "MARTEL",
+        "apellido_materno": "INOCENTE",
+        "codigo_verificacion": 5,
+        "direccion": "",
+        "direccion_completa": "",
+        "ubigeo_sunat": "",
+        "ubigeo": [
+            "",
+            "",
+            ""
+        ]
+    },
+    "source": "apiperu.dev"
+}, null, 2)
+
+		}
+        {
+			JSON.stringify({
+    "success": true,
+    "data": {
+        "direccion": "AV. FERNANDO BELAUNDE TERRY NRO. 1 URB. LAS PALEMERAS",
+        "direccion_completa": "AV. FERNANDO BELAUNDE TERRY NRO. 1 URB. LAS PALEMERAS, SAN MARTIN - SAN MARTIN - TARAPOTO",
+        "ruc": "20609041154",
+        "nombre_o_razon_social": "GEOR FABRICA DE SOFTWARE S.A.C.",
+        "estado": "ACTIVO",
+        "condicion": "HABIDO",
+        "departamento": "SAN MARTIN",
+        "provincia": "SAN MARTIN",
+        "distrito": "TARAPOTO",
+        "ubigeo_sunat": "220901",
+        "ubigeo": [
+            "22",
+            "2209",
+            "220901"
+        ],
+        "es_agente_de_retencion": null
+    },
+    "source": "apiperu.dev"
+}, null, 2)
+
+		}
+	</pre>
 </MainLayout>
