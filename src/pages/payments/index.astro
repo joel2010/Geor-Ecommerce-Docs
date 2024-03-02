@@ -1,19 +1,22 @@
 ---
-import MainLayout from '../../layouts/MainLayout.astro';
-import {PaymentMethods} from './models'
+import MainLayout from "../../layouts/MainLayout.astro";
+import { PaymentMethods } from "./models";
 ---
 
 <MainLayout title="Geor Ecommerce - Métodos de pago">
 	<h5>Métodos de pago disponibles</h5>
 	<hr />
 	<p>
-		<strong>Descripción: </strong>En este endpoint se retorna los métodos de pago seleccionados por el vendedor
+		<strong>Descripción:</strong>En este endpoint se retorna los métodos de
+		pago seleccionados por el vendedor
 	</p>
 	<p>
-		<strong>URL: </strong>
-		<span>https://pasion.georfact.test/api/v1/ecommerce/payment-methods/availables</span>
+		<strong>URL:</strong>
+		<span
+			>https://pasion.georfact.test/api/v1/ecommerce/payment-methods/availables</span
+		>
 	</p>
-	<p><strong>Método: </strong>GET</p>
+	<p><strong>Método:</strong>GET</p>
 	<p>
 		<strong>Respuesta</strong>
 	</p>
@@ -23,18 +26,19 @@ import {PaymentMethods} from './models'
 		}
 	</pre>
 
-	<br><br>
+	<br /><br />
 	<h5>Pagar carrito actual</h5>
 	<hr />
 	<p>
-		<strong>Descripción: </strong>Agrega un método de pago al carrito actual del usuario logueado
+		<strong>Descripción:</strong>Agrega un método de pago al carrito actual
+		del usuario logueado
 	</p>
 	<p>
-		<strong>URL: </strong>
+		<strong>URL:</strong>
 		<span>https://pasion.georfact.test/api/v1/ecommerce/carts/pay</span>
 	</p>
-	<p><strong>Método: </strong>POST</p>
-	<p><strong>Requiere: </strong>Autenticación | Validación de cuenta</p>
+	<p><strong>Método:</strong>POST</p>
+	<p><strong>Requiere:</strong>Autenticación | Validación de cuenta</p>
 	<p>
 		<strong>Request</strong>
 	</p>
@@ -49,16 +53,13 @@ import {PaymentMethods} from './models'
     "extra": [
         {
             "Departamento": "Lima",
-            "Ubigeo": "10"
-        },
+            "Ubigeo": "10"},
         {
             "Provincia": "Lima",
-            "Ubigeo": "1010"
-        },
+            "Ubigeo": "1010"},
         {
             "Distrito": "Lima",
-            "Ubigeo": "101001"
-        }
+            "Ubigeo": "101001"}
     ],
     "postal_code": "101155",
     "arrives_from": "2023-11-21 12:01:10",
@@ -66,13 +67,11 @@ import {PaymentMethods} from './models'
     "receives_name": "Alice Cerna Mendonza",
 	"receives_extra": {
         "name": "Demo demo",
-        "document_type": "44771122"
-    },
+        "document_type": "44771122"},
     "requirements": "Agregame mi boleta al correo joel201087@gmail.com",
     "payment_method": "TRANSFERENCIA",
     "billing_id": 11,
-	"coupon_code": "envio50"
-}, null, 2)
+	"coupon_code": "envio50"}, null, 2)
 		}
 	</pre>
 	<p>
@@ -82,11 +81,10 @@ import {PaymentMethods} from './models'
 		{
 			JSON.stringify({
     "success": true,
-    "message": "Información procesada de forma correcta."
-}, null, 2)
+    "message": "Información procesada de forma correcta."}, null, 2)
 		}
 	</pre>
-	<br><br>
+	<br /><br />
 	<p><strong>Tabla de referencias</strong></p>
 	<table>
 		<thead>
@@ -102,13 +100,18 @@ import {PaymentMethods} from './models'
 				<td>shipping_type</td>
 				<td>Tipo de método de envío</td>
 				<td>Cadena</td>
-				<td>Requerido | Cadena | Valores disponibles: AGENCIA - TIENDA - DOMICILIO</td>
+				<td
+					>Requerido | Cadena | Valores disponibles: AGENCIA - TIENDA
+					- DOMICILIO</td
+				>
 			</tr>
 			<tr>
 				<td>agency_code</td>
 				<td>Código de la agencia de envío</td>
 				<td>Cadena</td>
-				<td>Requerido si type es igual a AGENCIA | Máximo 15 caracteres</td>
+				<td
+					>Requerido si type es igual a AGENCIA | Máximo 15 caracteres</td
+				>
 			</tr>
 			<tr>
 				<td>establishment_id</td>
@@ -126,11 +129,17 @@ import {PaymentMethods} from './models'
 				<td>address</td>
 				<td>Dirección a donde se va a enviar el pedido</td>
 				<td>Cadena</td>
-				<td>Requerido cuando type es igual a DOMICILIO o AGENCIA | Máximo 250 caracteres</td>
+				<td
+					>Requerido cuando type es igual a DOMICILIO o AGENCIA |
+					Máximo 250 caracteres</td
+				>
 			</tr>
 			<tr>
 				<td>extra</td>
-				<td>Distrubición geográfica del país, ejemplo para el caso de Perú, Departamento, Provincia y Distrito.</td>
+				<td
+					>Distrubición geográfica del país, ejemplo para el caso de
+					Perú, Departamento, Provincia y Distrito.</td
+				>
 				<td>Json</td>
 				<td>Requerido cuando type es igual a DOMICILIO o AGENCIA</td>
 			</tr>
@@ -144,13 +153,15 @@ import {PaymentMethods} from './models'
 				<td>arrives_from</td>
 				<td>Fecha inicial de probable de entrega</td>
 				<td>Fecha</td>
-				<td>Requerido | Fecha | Formato de fecha YYYY-MM-DD HH:MM:SS</td>
+				<td>Requerido | Fecha | Formato de fecha YYYY-MM-DD HH:MM:SS</td
+				>
 			</tr>
 			<tr>
 				<td>arrives_to</td>
 				<td>Fecha final de probable de entrega</td>
 				<td>Fecha</td>
-				<td>Requerido | Fecha | Formato de fecha YYYY-MM-DD HH:MM:SS</td>
+				<td>Requerido | Fecha | Formato de fecha YYYY-MM-DD HH:MM:SS</td
+				>
 			</tr>
 			<tr>
 				<td>receives_name</td>
@@ -166,4 +177,65 @@ import {PaymentMethods} from './models'
 			</tr>
 		</tbody>
 	</table>
+
+	<br /><br />
+	<h5>Pagar carrito actual sin iniciar sesion</h5>
+	<hr />
+	<p>
+		<strong>Descripción:</strong>Agrega un método de pago al carrito actual
+		del usuario sin iniciar sesion 
+	</p>
+	<p>
+		<strong>URL:</strong>
+		<span>https://pasion.georfact.test/api/v1/ecommerce/carts-no-user/pay</span>
+	</p>
+	<p><strong>Método:</strong>POST</p>
+	<p><strong>No Requiere:</strong>Autenticación | Validación de cuenta</p>
+	<p>
+		<strong>Request</strong>
+	</p>
+	<pre>
+		{
+			JSON.stringify({
+    "shipping_type": "DOMICILIO",
+    "agency_code": "OLVA",
+    "establishment_id": 1,
+    "ubigeo": "150101",
+    "address": "Calle las dlores s/n",
+    "extra": [
+        {
+            "Departamento": "Lima",
+            "Ubigeo": "10"},
+        {
+            "Provincia": "Lima",
+            "Ubigeo": "1010"},
+        {
+            "Distrito": "Lima",
+            "Ubigeo": "101001"}
+    ],
+    "postal_code": "101155",
+    "arrives_from": "2023-11-21 12:01:10",
+    "arrives_to": "2023-11-21 14:01:10",
+    "receives_name": "Alice Cerna Mendonza",
+	"receives_extra": {
+        "name": "Demo demo",
+        "document_type": "44771122"},
+    "requirements": "Agregame mi boleta al correo joel201087@gmail.com",
+    "payment_method": "TRANSFERENCIA",
+    "billing_id": 11,
+	"coupon_code": "envio50",
+	"origin":"WEB"}, null, 2)
+		}
+	</pre>
+	<p>
+		<strong>Respuesta</strong>
+	</p>
+	<pre>
+		{
+			JSON.stringify({
+    "success": true,
+    "message": "Información procesada de forma correcta."}, null, 2)
+		}
+	</pre>
+	<br /><br />
 </MainLayout>
